@@ -1,4 +1,4 @@
-#!/Users/wes/lib/social-collage/bin/python
+#!/usr/bin/python2.6
 
 import os
 import json
