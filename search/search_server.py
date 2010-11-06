@@ -55,7 +55,7 @@ class TweetHandler(tornado.web.RequestHandler):
             # fixme: handle this
             pass
 
-        twitter_text = "#socialcommodity %s %s" % (image_url, query)
+        twitter_text = "#socialcollage %s %s" % (image_url, query)
         twitter_url = "http://twitter.com/home?status=" + urllib.quote(twitter_text)
         self.redirect(twitter_url)
 
