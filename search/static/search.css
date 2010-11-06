@@ -1,24 +1,42 @@
+#search {
+	width: 300px;
+	font-size: 17px;
+	border: 5px solid #E08E79;
+	font-family: arial;
+	padding: 3px;
+	margin: 0px;
+	background-color: #F2E9E1;
+	color: #E08E79;
+	font-weight: bold;
+}
+
 ul#image-results {
-	float: left;
+	float: center;
 	list-style: none;
 	margin: 0; padding: 10px;
-	width: 360px;
+	display: inline;
+	text-align: center;
 }
+
 ul#image-results li {
 	margin: 0; padding: 5px;
-	float: left;
+	float: center;
 	position: relative;  /* Set the absolute positioning base coordinate */
 	width: 110px;
 	height: 110px;
+	display: inline;
 }
+
 ul#image-results li img {
 	width: 100px; height: 100px; /* Set the small thumbnail size */
 	-ms-interpolation-mode: bicubic; /* IE Fix for Bicubic Scaling */
-	border: 1px solid #ddd;
+	border: 3px dotted #E08E79;
 	padding: 5px;
-	background: #f0f0f0;
-	position: absolute;
-	left: 0; top: 0;
+	background: #f2e9e1;
+	//position: absolute;
+	//left: 0; top: 0;
+	display: inline;
+	float: center;
 }
 
 ul#image-results li img.hover {
