@@ -39,6 +39,15 @@ class SearchHandler(tornado.web.RequestHandler):
         image_urls = [s['thumbnail_url'] for s in inp[0:num]]
         self.write(json.dumps(image_urls))
 
+class UserHandler(tornado.web.RequestHandler):
+    def __init__(self):
+        self.images = [];
+        self.username = None;
+        self.userurl = None;
+
+    def get(self):
+        self.render("index.html")
+
 
 class TweetHandler(tornado.web.RequestHandler):
     def get(self):
@@ -66,6 +75,7 @@ settings = {
 
 application = tornado.web.Application(
     [(r"/", IndexHandler),
+     (r"/user", UserHandler),
      (r"/search", SearchHandler),
      (r"/tweet", TweetHandler)],
     **settings)
