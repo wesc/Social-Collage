@@ -1,0 +1,108 @@
+<html>
+
+<head>
+<link href="/static/search.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/static/jquery-1.4.3.min.js"></script>
+</head>
+
+
+<body>
+
+<input id="search" type="text" name="search" value="What describes you?">
+
+<ul id="image-results"></ul>
+
+<div id="image-selection"></div>
+
+
+<script type="text/javascript">
+
+var selectedUrl = null;
+var searchTerms = null;
+
+
+/* Pulls images from /search and inserts it into the image-results div */
+function getImages(terms) {
+  $("#image-results").empty();
+  $("#image-results").append($("<img>").attr("src", "/static/ajax-loader.gif"));
+
+  $.getJSON("/search", { query: terms, num: 10 }, function(images) {
+      $("#image-results").empty();
+      for (i in images) {
+	var im = $("<li>").append($("<img>").attr("src", images[i]));
+	$("#image-results").append(im);
+      }
+    });
+};
+
+function sendTweet(imageUrl) {
+  var url = "/tweet?image=" + escape(imageUrl) + "&query=" + escape($("#search").val());
+  window.location = url;
+};
+
+
+$(function() {
+    var search = $('#search');
+    var original_val = search.val();
+
+    search.focus(function() {
+	if ($(this).val() === original_val) {
+	  $(this).val('');
+	}
+      });
+
+    search.blur(function() {
+	if ($(this).val() === '') {
+	  $(this).val(original_val);
+	}
+      });
+
+    search.keypress(function (e) {
+	if (e.which == 13) {
+	  getImages($(this).val());
+	  return false;
+	}
+      });
+
+    $("ul#image-results li").live('mouseenter', function() {
+	$(this).css({'z-index' : '10'}); /*Add a higher z-index value so this image stays on top*/ 
+	$(this).find('img').addClass("hover").stop() /* Add class of "hover", then stop animation queue buildup*/
+	  .animate({
+	    marginTop: '-110px', /* The next 4 lines will vertically align this image */ 
+		marginLeft: '-110px',
+		top: '50%',
+		left: '50%',
+		width: '174px', /* Set new width */
+		height: '174px', /* Set new height */
+		padding: '20px'
+		}, 200); /* this value of "200" is the speed of how fast/slow this hover animates */
+      });
+
+    $("ul#image-results li").live('mouseleave', function() {
+	$(this).css({'z-index' : '0'}); /* Set z-index back to 0 */
+	$(this).find('img').removeClass("hover").stop()  /* Remove the "hover" class , then stop animation queue buildup*/
+	  .animate({
+	    marginTop: '0', /* Set alignment back to default */
+		marginLeft: '0',
+		top: '0',
+		left: '0',
+		width: '100px', /* Set width back to default */
+		height: '100px', /* Set height back to default */
+		padding: '5px'
+		})
+	  });
+
+    $("ul#image-results li").live('click', function() {
+	// pick off first image and set the selected url to it
+
+	$("#image-selection").empty();
+	var img = $(this).find("img").first();
+	sendTweet(img.attr('src'));
+      });
+  });
+</script>
+
+</body>
+
+</html>
