@@ -1,1 +1,47 @@
 @CHARSET "UTF-8";
+
+
+#header {
+	height: 156px;
+	background: #CBE86B;
+	border-top: 10px solid #1C140D;
+}
+
+	#logo {
+		background: #F2F2F2;
+		height: 156px;
+	}
+	
+	#linkbar {
+		background: #F2F2F2;
+		height: 156px;
+	}
+	
+	#loginbar {
+		background: #F2F2F2;
+		height: 156px;
+	}
+	
+#content {
+	background: #FFF;
+	min-height: 400px;
+}
+
+	#collageinfo {
+		
+	}
+	
+	#socialmeta {
+		
+	}
+	
+#footer {
+	height: 175px;
+	background: #CBE86B;
+	border-top: 1px solid white;
+}
+
+	#meta {
+		height: 170px;
+		background: #F2F2F2;
+	}
