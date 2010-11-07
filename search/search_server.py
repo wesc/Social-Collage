@@ -38,7 +38,7 @@ def get_json(url, **params):
 class SearchHandler(tornado.web.RequestHandler):
     def get(self):
         query = self.get_argument("query", None)
-        num = 21
+        num = 24
 
         if query is None:
             # fixme: return 404 or something
