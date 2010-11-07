@@ -62,11 +62,11 @@ class SearchHandler(tornado.web.RequestHandler):
 
 class UserHandler(tornado.web.RequestHandler):
     def get(self, username):
-        #user_inp = json.load(open("user.inp"))
-        #timeline_inp = json.load(open("user_timeline.inp"))
+        user_inp = json.load(open("user.inp"))
+        timeline_inp = json.load(open("user_timeline.inp"))
 
-        user_inp = get_json("http://api.twitter.com/1/users/show.json", screen_name=username)
-        timeline_inp = get_json("http://api.twitter.com/1/statuses/user_timeline.json", screen_name=username)
+        #user_inp = get_json("http://api.twitter.com/1/users/show.json", screen_name=username)
+        #timeline_inp = get_json("http://api.twitter.com/1/statuses/user_timeline.json", screen_name=username)
 
         images = []
         all_tweets = list(timeline_inp)
@@ -102,9 +102,8 @@ class TweetHandler(tornado.web.RequestHandler):
 
 class CollageHandler(tornado.web.RequestHandler):
     def get(self):
-        #inp = json.loads(open('search.inp').read())
-
-        inp = get_json("http://search.twitter.com/search.json", q=social_hashtag)
+        inp = json.loads(open('search.inp').read())
+        #inp = get_json("http://search.twitter.com/search.json", q=social_hashtag)
 
         results = inp['results']
         tweets = []
