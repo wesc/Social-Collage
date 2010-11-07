@@ -1,47 +1,57 @@
 @CHARSET "UTF-8";
 
+body {
+	font-family: arial;
+	background-color: #404040;
+}
 
 #header {
 	height: 156px;
-	background: #CBE86B;
-	border-top: 10px solid #1C140D;
+	background: #f2e9e1;
+	border-top: 10px solid #404040;
 }
 
 	#logo {
-		background: #F2F2F2;
+		background: #f2e9e1;
 		height: 156px;
 	}
 	
 	#linkbar {
-		background: #F2F2F2;
+		background: #f2e9e1;
 		height: 156px;
 	}
 	
 	#loginbar {
-		background: #F2F2F2;
+		background: #f2e9e1;
 		height: 156px;
 	}
 	
 #content {
-	background: #FFF;
+	background: white;
 	min-height: 400px;
 }
 
 	#collageinfo {
-		
+		margin: 10px;
 	}
 	
 	#socialmeta {
-		
+		margin: 10px;
 	}
 	
 #footer {
 	height: 175px;
 	background: #CBE86B;
-	border-top: 1px solid white;
+	border-top: 0px solid white;
+		border-bottom: 10px solid #404040;
+
 }
 
 	#meta {
-		height: 170px;
-		background: #F2F2F2;
+		height: 150px;
+		background: #CBE86B;
+		color: black;
+		font-weight: bold;
+		font-size: 15px;
+		margin-top: 10px;
 	}
