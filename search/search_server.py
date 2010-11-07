@@ -54,25 +54,31 @@ def has_our_hash(text):
     return text.split()[0] == social_hashtag
 
 
+def get_json(url, **params):
+    full_url = "%s?%s" % (url, "&".join(["%s=%s" % (p, urllib.quote(v)) for p, v in params.items()]))
+    filename, headers = urllib.urlretrieve(full_url)
+    return json.load(open(filename))
+
+
 class UserHandler(tornado.web.RequestHandler):
     def get(self, username):
-        # http://api.twitter.com/1/statuses/user_timeline.json?screen_name=weschow
+        #user_inp = json.load(open("user.inp"))
+        #timeline_inp = json.load(open("user_timeline.inp"))
 
-        inp = json.load(open("user.inp"))
+        user_inp = get_json("http://api.twitter.com/1/users/show.json", screen_name=username)
+        timeline_inp = get_json("http://api.twitter.com/1/statuses/user_timeline.json", screen_name=username)
 
         images = []
-        for tw in inp:
+        for tw in timeline_inp:
             if has_our_hash(tw['text']):
                 hashtag, url, rest = parse_tweet(tw['text'])
                 images.append([url, " ".join(rest)])
 
-        self.render("user.html", username=username, images=images)
+        self.render("user.html", user=user_inp, images=images)
 
 
 class TweetHandler(tornado.web.RequestHandler):
     def get(self):
-        # http://twitter.com/home?status=@neilyourself%20%23tweetgen
-
         image_url = self.get_argument("image", None)
         query = self.get_argument("query", None)
 
@@ -84,6 +90,7 @@ class TweetHandler(tornado.web.RequestHandler):
             # fixme: handle this
             pass
 
+        # example: http://twitter.com/home?status=@neilyourself%20%23tweetgen
         twitter_text = "%s %s %s" % (social_hashtag, image_url, query)
         twitter_url = "http://twitter.com/home?status=" + urllib.quote(twitter_text)
         self.redirect(twitter_url)
@@ -93,9 +100,7 @@ class CollageHandler(tornado.web.RequestHandler):
     def get(self):
         #inp = json.loads(open('search.inp').read())
 
-        url = "http://search.twitter.com/search.json?q=" + urllib.quote("#socialcollage")
-        filename, headers = urllib.urlretrieve(url)
-        inp = json.load(open(filename))
+        inp = get_json("http://search.twitter.com/search.json", q=social_hashtag)
 
         results = inp['results']
         tweets = []

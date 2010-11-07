@@ -1,9 +1,9 @@
 <html>
 
 <head>
-<link href="/static/search.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/search.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript" src="/static/jquery-1.4.3.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-1.4.3.min.js"></script>
 </head>
 
 
@@ -28,7 +28,7 @@ var searchTerms = null;
 /* Pulls images from /search and inserts it into the image-results div */
 function getImages(terms) {
   $("#image-results").empty();
-  $("#image-results").append($("<img>").attr("src", "/static/ajax-loader.gif"));
+  $("#image-results").append($("<img>").attr("src", "/static/images/ajax-loader.gif"));
 
   $.getJSON("/search", { query: terms, num: 10 }, function(images) {
       $("#image-results").empty();
