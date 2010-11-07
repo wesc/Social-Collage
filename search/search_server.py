@@ -13,9 +13,9 @@ boss_http_base = "http://boss.yahooapis.com/ysearch/images/v1/"
 app_id = "fOwNVoHV34FaT7MH5A6Jzl2.DTD1A2NQ6tz1i2.f1zxxxSmVkO2M1RM1267Qx80-"
 
 
-class IndexHandler(tornado.web.RequestHandler):
+class GlueHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("index.html")
+        self.render("glue.html")
 
 
 class SearchHandler(tornado.web.RequestHandler):
@@ -72,11 +72,11 @@ class TweetHandler(tornado.web.RequestHandler):
 
 class CollageHandler(tornado.web.RequestHandler):
     def get(self):
-        #inp = json.loads(open('search.inp').read())
+        inp = json.loads(open('search.inp').read())
 
-        url = "http://search.twitter.com/search.json?q=" + urllib.quote("#socialcollage")
-        filename, headers = urllib.urlretrieve(url)
-        inp = json.load(open(filename))
+#         url = "http://search.twitter.com/search.json?q=" + urllib.quote("#socialcollage")
+#         filename, headers = urllib.urlretrieve(url)
+#         inp = json.load(open(filename))
 
         results = inp['results']
         tweets = []
@@ -99,11 +99,11 @@ settings = {
 }
 
 application = tornado.web.Application(
-    [(r"/", IndexHandler),
+    [(r"/glue", GlueHandler),
      (r"/user", UserHandler),
      (r"/search", SearchHandler),
      (r"/tweet", TweetHandler),
-     (r"/collage", CollageHandler)],
+     (r"/", CollageHandler)],
     **settings)
 
 if __name__ == "__main__":

@@ -6,27 +6,20 @@
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/960.css">
 		<link rel="stylesheet" type="text/css" href="css/userpage.css">
-		<script type="text/javascript" href="search/static/jquery-1.4.3.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$.get("user.php",
-						function(data) {
-							$('#collageinfo').html(data);
-							alert("hell yeah!");
-				});
-			});
-		</script>
+		
+		<script type="text/javascript" src="jquery-1.4.3.min.js"></script>
+
 	</head>
 	<body>
 		<div id="header" class="container_12">
 			<div id="logo" class="grid_3 ">
-				<img src="logo.jpg"?></img>
+				<img src="logo2.png" width='200px' style='margin-top: 10px;'></img>
 			</div>
 			<div id="linkbar" class="grid_7 ">
-				Linkbar
+				
 			</div>
 			<div id="loginbar" class="grid_2 ">
-				Loginbar
+				
 			</div>
 		</div>
 	
