@@ -69,12 +69,16 @@ class UserHandler(tornado.web.RequestHandler):
         timeline_inp = get_json("http://api.twitter.com/1/statuses/user_timeline.json", screen_name=username)
 
         images = []
-        for tw in timeline_inp:
+        all_tweets = list(timeline_inp)
+        tweets = [tw for tw in all_tweets if not has_our_hash(tw['text'])]
+        img_tweets = [tw for tw in all_tweets if has_our_hash(tw['text'])]
+
+        for tw in img_tweets:
             if has_our_hash(tw['text']):
                 hashtag, url, rest = parse_tweet(tw['text'])
                 images.append([url, " ".join(rest)])
 
-        self.render("user.html", user=user_inp, images=images)
+        self.render("user.html", user=user_inp, images=images, tweets=tweets)
 
 
 class TweetHandler(tornado.web.RequestHandler):

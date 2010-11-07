@@ -21,6 +21,15 @@
 
 				</div>
 				<div id="collagecomments">
+				  {% for tw in tweets[0:5] %}
+					<div class="comment">
+						<div class="commenterimg">
+							<img src="{{ user['profile_image_url'] }}" />
+						</div>
+						<p>{{ tw['text'] }}</p>
+					</div>
+				  {% end %}
+<!--
 					<input type="text"></input>
 					<div class="comment">
 						<div class="commenterimg">
@@ -46,6 +55,7 @@
 						</div>
 						<p>I, too, enjoy porcupines.</p>
 					</div>
+-->
 				</div>
 			</div>
 			<div id="socialmeta" class="grid_6 ">
