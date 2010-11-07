@@ -11,6 +11,7 @@ import tornado.web
 
 boss_http_base = "http://boss.yahooapis.com/ysearch/images/v1/"
 app_id = "fOwNVoHV34FaT7MH5A6Jzl2.DTD1A2NQ6tz1i2.f1zxxxSmVkO2M1RM1267Qx80-"
+social_hashtag = '#socialcollage'
 
 
 class GlueHandler(tornado.web.RequestHandler):
@@ -40,14 +41,32 @@ class SearchHandler(tornado.web.RequestHandler):
         self.write(json.dumps(image_urls))
 
 
-class UserHandler(tornado.web.RequestHandler):
-    def __init__(self):
-        self.images = [];
-        self.username = None;
-        self.userurl = None;
+def parse_tweet(text):
+    parts = text.split()
+    hashtag = parts[0]
+    url = parts[1]
+    rest = parts[2:]
 
-    def get(self):
-        self.render("index.html")
+    return hashtag, url, rest
+
+
+def has_our_hash(text):
+    return text.split()[0] == social_hashtag
+
+
+class UserHandler(tornado.web.RequestHandler):
+    def get(self, username):
+        # http://api.twitter.com/1/statuses/user_timeline.json?screen_name=weschow
+
+        inp = json.load(open("user.inp"))
+
+        images = []
+        for tw in inp:
+            if has_our_hash(tw['text']):
+                hashtag, url, rest = parse_tweet(tw['text'])
+                images.append([url, " ".join(rest)])
+
+        self.render("user.html", username=username, images=images)
 
 
 class TweetHandler(tornado.web.RequestHandler):
@@ -65,28 +84,24 @@ class TweetHandler(tornado.web.RequestHandler):
             # fixme: handle this
             pass
 
-        twitter_text = "#socialcollage %s %s" % (image_url, query)
+        twitter_text = "%s %s %s" % (social_hashtag, image_url, query)
         twitter_url = "http://twitter.com/home?status=" + urllib.quote(twitter_text)
         self.redirect(twitter_url)
 
 
 class CollageHandler(tornado.web.RequestHandler):
     def get(self):
-        inp = json.loads(open('search.inp').read())
+        #inp = json.loads(open('search.inp').read())
 
-#         url = "http://search.twitter.com/search.json?q=" + urllib.quote("#socialcollage")
-#         filename, headers = urllib.urlretrieve(url)
-#         inp = json.load(open(filename))
+        url = "http://search.twitter.com/search.json?q=" + urllib.quote("#socialcollage")
+        filename, headers = urllib.urlretrieve(url)
+        inp = json.load(open(filename))
 
         results = inp['results']
         tweets = []
         for tw in results:
-            parts = tw['text'].split()
-            hashtag = parts[0]
-            url = parts[1]
-            rest = parts[2:]
-
-            if hashtag == "#socialcollage":
+            if has_our_hash(tw['text']):
+                hashtag, url, rest = parse_tweet(tw['text'])
                 tweets.append({ 'username': tw['from_user'],
                                 'url': url,
                                 'query': " ".join(rest) })
@@ -100,7 +115,7 @@ settings = {
 
 application = tornado.web.Application(
     [(r"/glue", GlueHandler),
-     (r"/user", UserHandler),
+     (r"/user/([A-Za-z0-9_]+)", UserHandler),
      (r"/search", SearchHandler),
      (r"/tweet", TweetHandler),
      (r"/", CollageHandler)],
