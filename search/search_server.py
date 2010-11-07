@@ -14,32 +14,6 @@ app_id = "fOwNVoHV34FaT7MH5A6Jzl2.DTD1A2NQ6tz1i2.f1zxxxSmVkO2M1RM1267Qx80-"
 social_hashtag = '#socialcollage'
 
 
-class GlueHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render("glue.html")
-
-
-class SearchHandler(tornado.web.RequestHandler):
-    def get(self):
-        query = self.get_argument("query", None)
-        num = 9
-
-        if query is None:
-            # fixme: return 404 or something
-            pass
-
-        url = boss_http_base + urllib.quote('"%s"' % query) + "?appid=" + app_id
-        filename, headers = urllib.urlretrieve(url)
-        try:
-            inp = json.load(open(filename))['ysearchresponse']['resultset_images']
-        except KeyError, e:
-            # didn't get valid results
-            # fixme: handle this
-            pass
-
-        image_urls = [s['thumbnail_url'] for s in inp[0:num]]
-        self.write(json.dumps(image_urls))
-
 
 def parse_tweet(text):
     parts = text.split()
@@ -55,9 +29,35 @@ def has_our_hash(text):
 
 
 def get_json(url, **params):
-    full_url = "%s?%s" % (url, "&".join(["%s=%s" % (p, urllib.quote(v)) for p, v in params.items()]))
+    full_url = "%s?%s" % (url, "&".join(["%s=%s" % (p, urllib.quote(str(v))) for p, v in params.items()]))
     filename, headers = urllib.urlretrieve(full_url)
     return json.load(open(filename))
+
+
+
+class GlueHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render("glue.html")
+
+
+class SearchHandler(tornado.web.RequestHandler):
+    def get(self):
+        query = self.get_argument("query", None)
+        num = 21
+
+        if query is None:
+            # fixme: return 404 or something
+            pass
+
+        try:
+            url = boss_http_base + urllib.quote('"%s"' % query)
+            inp = get_json(url, appid=app_id, count=num)['ysearchresponse']['resultset_images']
+        except KeyError, e:
+            # didn't get valid results
+            raise tornado.web.HTTPError(503)
+
+        image_urls = [s['thumbnail_url'] for s in inp[0:num]]
+        self.write(json.dumps(image_urls))
 
 
 class UserHandler(tornado.web.RequestHandler):

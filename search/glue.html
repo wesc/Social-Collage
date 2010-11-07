@@ -1,14 +1,6 @@
-<html>
+{% extends "base.html" %}
 
-<head>
-<link href="/static/css/search.css" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript" src="/static/js/jquery-1.4.3.min.js"></script>
-</head>
-
-
-<body>
-
+{% block body %}
 <p align='center'>
 <input id="search" type="text" name="search" value="What describes you?" />
 <br />
@@ -18,25 +10,28 @@
 <div id="image-selection"></div>
 
 </p>
+{% end %}
 
+
+{% block js %}
 <script type="text/javascript">
 
 var selectedUrl = null;
 var searchTerms = null;
-
 
 /* Pulls images from /search and inserts it into the image-results div */
 function getImages(terms) {
   $("#image-results").empty();
   $("#image-results").append($("<img>").attr("src", "/static/images/ajax-loader.gif"));
 
-  $.getJSON("/search", { query: terms, num: 10 }, function(images) {
-      $("#image-results").empty();
-      for (i in images) {
-	var im = $("<li>").append($("<img>").attr("src", images[i]));
-	$("#image-results").append(im);
-      }
-    });
+  $.getJSON("/search", { query: terms },
+	    function(images, status) {
+	      $("#image-results").empty();
+	      for (i in images) {
+		var im = $("<li>").append($("<img>").attr("src", images[i]));
+		$("#image-results").append(im);
+	      }
+	    });
 };
 
 function sendTweet(imageUrl) {
@@ -68,6 +63,7 @@ $(function() {
 	}
       });
 
+    // yanked from http://www.sohtanaka.com/web-design/fancy-thumbnail-hover-effect-w-jquery/
     $("ul#image-results li").live('mouseenter', function() {
 	$(this).css({'z-index' : '10'}); /*Add a higher z-index value so this image stays on top*/ 
 	$(this).find('img').addClass("hover").stop() /* Add class of "hover", then stop animation queue buildup*/
@@ -105,7 +101,4 @@ $(function() {
       });
   });
 </script>
-
-</body>
-
-</html>
+{% end %}
