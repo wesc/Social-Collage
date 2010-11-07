@@ -13,7 +13,9 @@
 	<body>
 		<div id="header" class="container_12">
 			<div id="logo" class="grid_3 ">
+			  <a href="/">
 				<img src="/static/images/logo2.png" width='200px' style='margin-top: 10px;' />
+			  </a>
 			</div>
 			<div id="linkbar" class="grid_7 ">
 			  <p align='center'>
@@ -47,6 +49,7 @@ var searchTerms = null;
 
 /* Pulls images from /search and inserts it into the image-results div */
 function getImages(terms) {
+  $("#results").hide('fast');
   $("#image-results").empty();
   //$("#image-results").append($("<img>").attr("src", "/static/images/ajax-loader.gif"));
 
@@ -57,7 +60,7 @@ function getImages(terms) {
 		var im = $("<li>").append($("<img>").attr("src", images[i]));
 		$("#image-results").append(im);
 	      }
-	$("#results").show('fast');
+	      $("#results").show('fast');
 	    });
 };
 
