@@ -55,7 +55,8 @@ function getImages(terms) {
 	      $("#image-results").empty();
 	      for (i in images) {
 		var im = $("<li class='thumb'>").append($("<img>").attr("src", images[i]));
-		$("#image-results").append(im.append($('<a>').attr("href", images[i]).append($('<label>').addClass("hidden"))));
+		//		$("#image-results").append(im.append($('<a>').attr("href", images[i]).append($('<label>').addClass("hidden"))));
+		$("#image-results").append(im.append($('<label>').addClass("hidden")));
 	      }
               $("#image-results").append('<div class="floatclear"> </div>');
 	      $("#results").show('fast');
@@ -91,7 +92,7 @@ $(function() {
 	}
       });
 
-    $("ul#image-results li").live('click', function() {
+    $("li.thumb label").live('click', function() {
 	// pick off first image and set the selected url to it
 	var img = $(this).find("img").first();
 	sendTweet(img.attr('src'));
