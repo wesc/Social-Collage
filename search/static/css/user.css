@@ -1,0 +1,130 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: arial;
+	background-color: #404040;
+}
+
+#header {
+	height: 156px;
+	background: #f2e9e1;
+	border-top: 10px solid #404040;
+}
+
+	#logo {
+		background: #f2e9e1;
+		height: 156px;
+	}
+	
+	#linkbar {
+		background: #f2e9e1;
+		height: 156px;
+	}
+	
+	#loginbar {
+		background: #f2e9e1;
+		height: 156px;
+	}
+	
+#content {
+	background: white;
+	min-height: 600px;
+}
+
+	#collageinfo {
+		margin: 10px 0px;
+	}
+	
+		#usercollage {
+			border: 1px solid #eee;
+			margin-left: 10px;
+			width: 440px;
+			height: 292px;
+		}
+		
+			#usercollage img {
+				float: left;
+				max-width: 140px;
+				max-height: 140px;
+				margin: 2px;
+			}
+			
+		#collagecomments {
+			margin-left: 70px;
+			width: 300px;
+			
+		}
+			
+			#collagecomments input[type="text"]{
+				margin-top: 20px;
+				border: 1px solid #CCC;
+				width: 300px;
+			}
+		
+			#collagecomments .comment {
+				width: 300px;
+				border: 1px solid #DEDEDE;
+				-webkit-border-radius: 5px;
+				-moz-webkit-border-radius: 5px;
+				height: 60px;
+			}
+			
+				#collagecomments .commenterimg {
+					width: 60px;
+					height: 60px;
+					float: left;
+				}
+					#collagecomments .commenterimg img {
+						max-width: 60px;
+						max-height: 60px;
+					}
+				
+				#collagecomments p {
+					width: 220px;
+					float: right;
+				}
+	
+	#socialmeta {
+		margin: 10px 0px;
+	}
+	
+		#userimage {
+			width: 140px;
+			float: left;
+		}
+		
+		#userimage img {
+			width: 140px;
+		}
+	
+		#basicinfo {
+			width: 300px;
+			float: right;
+		}
+	
+#footer {
+	height: 175px;
+	background: #CBE86B;
+	border-top: 0px solid white;
+		border-bottom: 10px solid #404040;
+
+}
+
+	#meta {
+		height: 150px;
+		background: #CBE86B;
+		color: black;
+		font-weight: bold;
+		font-size: 15px;
+		margin-top: 10px;
+	}
+	
+p {
+	margin-top: 10px;
+	font: 12px Arial, sans-serif;
+}
+
+h2 {
+	color: blue;
+	font-weight: bold;
+}
