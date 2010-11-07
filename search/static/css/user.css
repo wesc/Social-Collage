@@ -103,7 +103,7 @@ body {
 		#usercollage {
 			border: 1px solid #eee;
 			margin-left: 10px;
-			width: 440px;
+			width: 580px;
 			height: 292px;
 		}
 		
@@ -117,17 +117,14 @@ body {
 		#collagecomments {
 			margin-left: 70px;
 			width: 300px;
+    height: 100px;
 			
 		}
-			
-			#collagecomments input[type="text"]{
-				margin-top: 20px;
-				border: 1px solid #CCC;
+
+			.comment {
 				width: 300px;
-			}
-		
-			#collagecomments .comment {
-				width: 300px;
+                                padding: 8px;
+                                margin-bottom: 4px;
 				border: 1px solid #DEDEDE;
 				-webkit-border-radius: 5px;
 				-moz-webkit-border-radius: 5px;
@@ -170,12 +167,18 @@ body {
 		#basicinfo {
 			width: 300px;
 			float: right;
+                        margin-bottom: 4px;
 		}
+#basicinfo img {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
 	
 #footer {
 	height: 175px;
 	background: #CBE86B;
-	border-top: 0px solid white;
+	border-top: 50px solid white;
 		border-bottom: 10px solid #404040;
 
 }

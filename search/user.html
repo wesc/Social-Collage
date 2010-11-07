@@ -5,7 +5,7 @@
 			<div id="collageinfo" class="grid_6 ">
 				<div id="usercollage">
 				  {% for image_url, query in images %}
-				  <img src="{{ image_url }}" width="200" height="133" />
+				  <img src="{{ image_url }}" width="200" height="200" />
 				  {% end %}
 <!--
 					<img src="http://bit.ly/aOJ8z2"></img>
@@ -21,14 +21,13 @@
 
 				</div>
 				<div id="collagecomments">
+<!--
 				  {% for tw in tweets[0:5] %}
 					<div class="comment">
-						<div class="commenterimg">
-							<img src="{{ user['profile_image_url'] }}" />
-						</div>
 						<p>{{ tw['text'] }}</p>
 					</div>
 				  {% end %}
+-->
 <!--
 					<input type="text"></input>
 					<div class="comment">
@@ -60,12 +59,20 @@
 			</div>
 			<div id="socialmeta" class="grid_6 ">
 				<div id="userinfo">
-					<div id="userimage">
-						<img src="{{ user['profile_image_url'] }}"></img>
-					</div>
 					<div id="basicinfo">
+						<img src="{{ user['profile_image_url'] }}" />
 						<h2><a href="http://twitter.com/{{ user['screen_name'] }}">@{{ user['screen_name'] }}</a></h2>
+
 						<p><b>{{ user['name'] }}</b> {{ user['description'] }}</p>
+
+				  {% for tw in tweets[0:5] %}
+					<div class="comment">
+						<p>{{ tw['text'] }}</p>
+					</div>
+				  {% end %}
+
+					</div>
+					<div>
 					</div>
 				</div>
 			</div>
