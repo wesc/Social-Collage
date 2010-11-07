@@ -39,6 +39,7 @@ class SearchHandler(tornado.web.RequestHandler):
         image_urls = [s['thumbnail_url'] for s in inp[0:num]]
         self.write(json.dumps(image_urls))
 
+
 class UserHandler(tornado.web.RequestHandler):
     def __init__(self):
         self.images = [];
@@ -69,6 +70,30 @@ class TweetHandler(tornado.web.RequestHandler):
         self.redirect(twitter_url)
 
 
+class CollageHandler(tornado.web.RequestHandler):
+    def get(self):
+        #inp = json.loads(open('search.inp').read())
+
+        url = "http://search.twitter.com/search.json?q=" + urllib.quote("#socialcollage")
+        filename, headers = urllib.urlretrieve(url)
+        inp = json.load(open(filename))
+
+        results = inp['results']
+        tweets = []
+        for tw in results:
+            parts = tw['text'].split()
+            hashtag = parts[0]
+            url = parts[1]
+            rest = parts[2:]
+
+            if hashtag == "#socialcollage":
+                tweets.append({ 'username': tw['from_user'],
+                                'url': url,
+                                'query': " ".join(rest) })
+
+        self.render('collage.html', tweets=tweets)
+
+
 settings = {
     "static_path": os.path.join(os.path.dirname(__file__), "static"),
 }
@@ -77,7 +102,8 @@ application = tornado.web.Application(
     [(r"/", IndexHandler),
      (r"/user", UserHandler),
      (r"/search", SearchHandler),
-     (r"/tweet", TweetHandler)],
+     (r"/tweet", TweetHandler),
+     (r"/collage", CollageHandler)],
     **settings)
 
 if __name__ == "__main__":
