@@ -6,6 +6,16 @@
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/960.css">
 		<link rel="stylesheet" type="text/css" href="css/userpage.css">
+		<script type="text/javascript" href="search/static/jquery-1.4.3.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$.get("user.php",
+						function(data) {
+							$('#collageinfo').html(data);
+							alert("hell yeah!");
+				});
+			});
+		</script>
 	</head>
 	<body>
 		<div id="header" class="container_12">
@@ -36,32 +46,3 @@
 		</div>
 	</body>
 </html>
-
-<?
-
-	class Collage {
-		private $images = array();
-		private $username = "nil";
-		private $userurl = "socialcollage/userpage.php?";
-		
-		public function createUser($usr) {
-			$username = $usr;
-			$userurl = "socialcollage/userpage.php?".$username;
-		}
-		
-		public function addImg($imgurl) {
-			$images.array_push($imgurl);
-		}
-		
-		public function printCollage() {
-			echo "<div class='collage' id='".$username."collage'>";
-			foreach ($images as $image) {
-				echo "<div class='collageimg'>".
-						"<img src = '".$image."'>".
-					 "</div>"; 
-			}
-			echo "<div>";
-		}
-	}
-
-?>
