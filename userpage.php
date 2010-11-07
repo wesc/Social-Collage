@@ -25,10 +25,56 @@
 	
 		<div id="content" class="container_12">
 			<div id="collageinfo" class="grid_6 ">
-				Collageinfo
+				<div id="usercollage">
+					<img src="http://bit.ly/aOJ8z2"></img>
+					<img src="http://bit.ly/aOJ8z2"></img>
+					<img src="http://bit.ly/aOJ8z2"></img>
+					<img src="http://bit.ly/aOJ8z2"></img>
+					<img src="http://bit.ly/aOJ8z2"></img>
+					<img src="http://bit.ly/aOJ8z2"></img>
+					<img src="http://bit.ly/aOJ8z2"></img>
+					<img src="http://bit.ly/aOJ8z2"></img>
+					<img src="http://bit.ly/aOJ8z2"></img>
+				</div>
+				<div id="collagecomments">
+					<input type="text"></input>
+					<div class="comment">
+						<div class="commenterimg">
+							<img src="http://bit.ly/aOJ8z2"></img>
+						</div>
+						<p>This guy is so bad at eating porcupines!</p>
+					</div>
+					<div class="comment">
+						<div class="commenterimg">
+							<img src="http://bit.ly/aOJ8z2"></img>
+						</div>
+						<p>Shut up! He's Great!</p>
+					</div>
+					<div class="comment">
+						<div class="commenterimg">
+							<img src="http://bit.ly/aOJ8z2"></img>
+						</div>
+						<p>Dude... genetic modification for profit?</p>
+					</div>
+					<div class="comment">
+						<div class="commenterimg">
+							<img src="http://bit.ly/aOJ8z2"></img>
+						</div>
+						<p>I, too, enjoy porcupines.</p>
+					</div>
+				</div>
 			</div>
 			<div id="socialmeta" class="grid_6 ">
-				Socialmeta
+				<div id="userinfo">
+					<div id="userimage">
+						<img src="http://bit.ly/aOJ8z2"></img>
+					</div>
+					<div id="basicinfo">
+						<h2>@grobolom</h2>
+						<p><b>Vasja Volin</b> is a really strange person</p>
+						<p>He can impsum ipsum dolor the hell out of that amet amet amet. Rotunda is the square root of the inverse of a ham sandwich fired into the core of the sun at relativistic porcupines.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	
