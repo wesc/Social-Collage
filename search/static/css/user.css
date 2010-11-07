@@ -30,6 +30,18 @@ body {
 	background: white;
 	min-height: 600px;
 }
+
+	#results ul {
+		background: #EEE;
+		margin-left: 4px;
+	}
+
+	#results .thumb.select {
+		border: 1px solid #000;
+		background: #FFF;
+		opacity: 0.5;
+	}
+
 	#content ul {
 		padding: 15px 0px;
 		margin-left: 4px;
@@ -38,7 +50,7 @@ body {
 	.thumb {
 		width: 117px;
 		height: 117px;
-		border: 1px solid #f2e9e1;
+		border: 1px solid #b2a9a1;
 		float: left;
 		position: relative;
 	}
@@ -54,6 +66,7 @@ body {
 			z-index: 2;
 			width: 117px;
 			height: 117px;
+			cursor: pointer;
 		}
 
 	.thumb label {
@@ -136,7 +149,7 @@ body {
 					float: right;
 				}
 
-	#floatclear {
+	.floatclear {
 		clear: both;
 		height: 1px;
 	}

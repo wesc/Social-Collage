@@ -28,11 +28,11 @@
 			</div>
 		</div>
 
-		<div id="results" class="container_12">
-		  <ul id="image-results"></ul>
-		</div>
+		
 
 		<div id="content" class="container_12">
+		  <ul id="image-results"></ul>
+		
 		  {% block body %}{% end %}
 		</div>
 
@@ -57,9 +57,10 @@ function getImages(terms) {
 	    function(images, status) {
 	      $("#image-results").empty();
 	      for (i in images) {
-		var im = $("<li>").append($("<img>").attr("src", images[i]));
-		$("#image-results").append(im);
+		var im = $("<li class='thumb'>").append($("<img>").attr("src", images[i]));
+		$("#image-results").append(im.append($('<a>').attr("href", images[i]).append($('<label>').addClass("hidden"))));
 	      }
+              $("#image-results").append('<div class="floatclear"> </div>');
 	      $("#results").show('fast');
 	    });
 };
