@@ -1,3 +1,7 @@
+#results {
+    display: none;
+}
+
 #search {
 	width: 300px;
 	font-size: 17px;
@@ -13,25 +17,25 @@
 ul#image-results {
 	float: center;
 	list-style: none;
-	margin: 0; padding: 10px;
+	margin: 0;
 	display: inline;
 	text-align: center;
 }
 
 ul#image-results li {
-	margin: 0; padding: 5px;
+	margin: 0; padding: 1px;
 	float: center;
 	position: relative;  /* Set the absolute positioning base coordinate */
-	width: 110px;
-	height: 110px;
+/*	width: 110px;
+	height: 110px; */
 	display: inline;
 }
 
 ul#image-results li img {
-	width: 100px; height: 100px; /* Set the small thumbnail size */
+	width: 120px; height: 79px; /* Set the small thumbnail size */
 	-ms-interpolation-mode: bicubic; /* IE Fix for Bicubic Scaling */
-	border: 3px dotted #E08E79;
-	padding: 5px;
+/*	border: 3px dotted #E08E79;
+	padding: 5px;*/
 	background: #f2e9e1;
 	//position: absolute;
 	//left: 0; top: 0;
@@ -40,6 +44,5 @@ ul#image-results li img {
 }
 
 ul#image-results li img.hover {
-	background:url(thumb_bg.png) no-repeat center center;  /* Image used as background on hover effect
 	border: none; /* Get rid of border on hover */
 }
