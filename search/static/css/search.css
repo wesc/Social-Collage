@@ -1,3 +1,7 @@
+#results {
+    display: none;
+}
+
 #search {
 	width: 300px;
 	font-size: 17px;

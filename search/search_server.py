@@ -35,11 +35,6 @@ def get_json(url, **params):
 
 
 
-class GlueHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render("glue.html")
-
-
 class SearchHandler(tornado.web.RequestHandler):
     def get(self):
         query = self.get_argument("query", None)
@@ -122,8 +117,7 @@ settings = {
 }
 
 application = tornado.web.Application(
-    [(r"/glue", GlueHandler),
-     (r"/user/([A-Za-z0-9_]+)", UserHandler),
+    [(r"/user/([A-Za-z0-9_]+)", UserHandler),
      (r"/search", SearchHandler),
      (r"/tweet", TweetHandler),
      (r"/", CollageHandler)],
