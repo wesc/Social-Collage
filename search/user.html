@@ -4,7 +4,7 @@
 {% block body %}
 			<div id="collageinfo" class="grid_6 ">
 				<div id="usercollage">
-				  {% for image_url, query in images %}
+				  {% for image_url, query in images[0:8] %}
 				  <img src="{{ image_url }}" width="200" height="200" />
 				  {% end %}
 <!--
