@@ -30,6 +30,58 @@ body {
 	background: white;
 	min-height: 600px;
 }
+	#content ul {
+		padding: 15px 0px;
+		margin-left: 4px;
+	}
+
+	.thumb {
+		width: 117px;
+		height: 117px;
+		border: 1px solid #f2e9e1;
+		float: left;
+		position: relative;
+	}
+
+		.thumb a {
+			width: 117px;
+			height: 117px;
+			text-decoration: none;
+		}
+
+		.thumb img {
+			position: absolute;
+			z-index: 2;
+			width: 117px;
+			height: 117px;
+		}
+
+	.thumb label {
+		height: 117px;
+		width: 117px;
+		opacity: 0.9;
+		z-index: 100;
+		position: absolute;
+		background: #000;
+		cursor: pointer;
+		display: none;
+	}
+
+		.thumb label h2 {
+			font: 12px Arial, sans-serif;
+		}
+
+		.thumb label h2, .thumb label p {
+			margin-top: 22px;
+			clear: none;
+			z-index: 100;
+			text-align: center;
+		}
+
+		.thumb label p {
+			color: #FFF;
+		}
+
 
 	#collageinfo {
 		margin: 10px 0px;
@@ -83,18 +135,23 @@ body {
 					width: 220px;
 					float: right;
 				}
+
+	#floatclear {
+		clear: both;
+		height: 1px;
+	}
 	
 	#socialmeta {
 		margin: 10px 0px;
 	}
 	
 		#userimage {
-			width: 140px;
+			width: 48px;
 			float: left;
 		}
 		
 		#userimage img {
-			width: 140px;
+			width: 48px;
 		}
 	
 		#basicinfo {

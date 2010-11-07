@@ -3,7 +3,22 @@
 {% block body %}
 <ul>
 {% for tw in tweets %}
-<a href="/user/{{ tw['username'] }}"><img src="{{ tw['url'] }}" /></a> {{ tw['query'] }}
+<li class='thumb'>
+	<img src="{{ tw['url'] }}" alt="{{ escape(tw['query']) }}" />
+	<a href="/user/{{ tw['username'] }}">
+		<label class='hidden'><h2>@{{ tw['username'] }}</h2><p>{{ escape(tw['query']) }}</p></label>
+	</a>
+</li>
 {% end %}
-</ul
+<div id='ulclear'> </div>
+</ul>
+{% end %}
+
+{% block js %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".thumb").live('mouseenter', function () { $(this).find('label').fadeIn(100); });
+		$(".thumb").live('mouseleave', function () { $(this).find('label').fadeOut(100); });
+	});
+</script>
 {% end %}
