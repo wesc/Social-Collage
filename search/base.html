@@ -94,7 +94,7 @@ $(function() {
 
     $("li.thumb label").live('click', function() {
 	// pick off first image and set the selected url to it
-	var img = $(this).find("img").first();
+	var img = $(this).prev();
 	sendTweet(img.attr('src'));
       });
   });
